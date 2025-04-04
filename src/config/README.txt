@@ -1,0 +1,1 @@
+This directory should hold any file related to game configuration.

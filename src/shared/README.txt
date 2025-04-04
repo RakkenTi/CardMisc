@@ -1,0 +1,1 @@
+This directory should hold packages/modules that are linked to an online repository. IE: git submodules

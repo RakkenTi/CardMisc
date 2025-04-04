@@ -1,0 +1,1 @@
+This directory should contain all of the core functionality of the project.
