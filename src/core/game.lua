@@ -4,13 +4,23 @@
 
 local game = {}
 
---- Called by love.init()
+--- love.load()
 function game.init()
 
 end
 
---- Called in love.update()
+--- love.update()
 function game.update(dt)
+
+end
+
+--- love.draw()
+function game.draw()
+
+end
+
+--- love.exit()
+function game.exit()
 
 end
 
