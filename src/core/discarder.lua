@@ -19,7 +19,7 @@ local discarder = {}
 
 function discarder.init()
     FRAME:setAnchor(ANCHOR)
-    FRAME:setColour(utils.)
+    FRAME:setColour()
 end
 
 function discarder.update(dt)
