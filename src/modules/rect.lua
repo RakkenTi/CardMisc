@@ -25,11 +25,29 @@ function rect.new(pos, size)
     self.scalePos = vector2.new()
     self.colour = {255, 255, 255}
     self.cornerRadius = 0
+    self.outline = {
+        false,
+        1,
+        {1, 1, 1}
+    }
+    self.enabled = true
 
     return self
 end
 
 --// Methods
+function rect:setOutline(bool, thickness, colour)
+    self.outline = {
+        bool,
+        thickness,
+        colour
+    }
+end
+
+function rect:setEnabled(bool)
+    self.enabled = bool
+end
+
 function rect:setColour(colour)
     self.colour = colour
 end
@@ -101,6 +119,7 @@ end
 --- @param pos Vector2
 --- @return boolean
 function rect:isInside(pos)
+    if (not self.enabled) then return false end
     return collision.checkRect(
         pos.x,
         pos.y,
@@ -112,6 +131,7 @@ function rect:isInside(pos)
 end
 
 function rect:update()
+    if (not self.enabled) then return end
     local screenSize = vector2.new(love.window.getMode())
     self.pixelSize = vector2.new((self.size.x * screenSize.x), (self.size.y * screenSize.y))
     self.scalePos = vector2.new(
@@ -121,10 +141,16 @@ function rect:update()
 end
 
 function rect:draw()
+    if (not self.enabled) then return end
     love.graphics.setColor(self.colour)
     love.graphics.rectangle("fill", self.scalePos.x, self.scalePos.y, self.pixelSize.x, self.pixelSize.y, self.cornerRadius, self.cornerRadius)
-    love.graphics.setColor(1,1,1)
-    love.graphics.rectangle("line", self.scalePos.x, self.scalePos.y, self.pixelSize.x, self.pixelSize.y, self.cornerRadius, self.cornerRadius)
+    if (self.outline[1]) then
+        local currentLineWidth = love.graphics.getLineWidth()
+        love.graphics.setLineWidth(self.outline[2])
+        love.graphics.setColor(self.outline[3])
+        love.graphics.rectangle("line", self.scalePos.x, self.scalePos.y, self.pixelSize.x, self.pixelSize.y, self.cornerRadius, self.cornerRadius)
+        love.graphics.setLineWidth(currentLineWidth)
+    end
 end
 
 return rect

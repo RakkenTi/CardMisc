@@ -3,7 +3,11 @@
 --- By Mark Martinez
 ---
 
-local game = require('src.core.stack')
+--// Core
+local stack = require('src.core.stack')
+local discarder = require('src.core.discarder')
+
+--// Config
 local window = require('src.config.window')
 
 function love.load()
@@ -14,19 +18,22 @@ function love.load()
         love.window.close()
     end
 
-    game.init()
+    stack.init()
+    discarder.init()
 end
 
 --- @param dt number
 function love.update(dt)
-    game.update(dt)
+    stack.update(dt)
+    discarder.update(dt)
 end
 
 function love.draw()
-    game.draw()
-    love.graphics.setColor(255,255,255)
+    discarder.draw()
+    stack.draw()
 end
 
 function love.quit()
-    game.exit()
+    stack.exit()
+    discarder.exit()
 end

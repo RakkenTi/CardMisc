@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f352d6a2-7a0a-418a-bba6-1b3750d579c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/card.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/gradient.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/window.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/discarder.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/card.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/colours.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.lua" beforeDir="false" afterPath="$PROJECT_DIR$/main.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/game.lua" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/game.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/stack.lua" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/stack.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/rect.lua" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/rect.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/utils/spring.lua" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utils/spring.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Love2D Fragment Shader" />
+        <option value="Lua Object" />
+        <option value="Love2D Core Script" />
       </list>
     </option>
   </component>
@@ -64,20 +66,24 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/VSCProjects/CardMisc/src/assets",
+    "last_opened_file_path": "E:/VSCProjects/CardMisc/src/data",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "inlay.hints",
+    "settings.editor.selected.configurable": "fileTemplates",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\VSCProjects\CardMisc\src\data" />
       <recent name="E:\VSCProjects\CardMisc\src\assets" />
       <recent name="E:\VSCProjects\CardMisc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\VSCProjects\CardMisc\src\data" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -98,7 +104,7 @@
       <updated>1743798370879</updated>
       <workItem from="1743798372542" duration="10122000" />
       <workItem from="1743810761137" duration="151000" />
-      <workItem from="1743810921472" duration="2077000" />
+      <workItem from="1743810921472" duration="6249000" />
     </task>
     <servers />
   </component>

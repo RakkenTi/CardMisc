@@ -1,42 +1,32 @@
---- Core game lua file.
---- main.lua is seperate as it is the entry point of the program.
---- This file should act as the center point of the game.
-
 --// Modules
 local utils = require("src.shared.utils.utils")
 local vector2 = require("src.shared.utils.vector2")
 local rect = require("src.modules.rect")
 local spring = require("src.shared.utils.spring")
+local cardData = require("src.data.card")
 
 --// Internals
 local deck = {}
 
-local CARD_ORIGIN = vector2.new(0.5, 0.95)
-local CARD_ANCHOR = vector2.new(0.5,1)
-local CARD_SIZE = vector2.new(0.01, 0.025) * 10
-local CARD_DIRECTION_FACTOR = -1
-local CORNER_RADIUS = 4
-local CARD_GAP = 0.01 / 2
-local CARD_COUNT = 100
-
-local selectedCard = nil
-
 --// Game
-local game = {}
+local stack = {
+    deckRef = deck
+}
 
 --- love.load()
-function game.init()
+function stack.init()
     -- Create cards
-    for i = 1, CARD_COUNT do
-        local size = CARD_SIZE
-        local pos = vector2.new(CARD_ORIGIN.x, CARD_ORIGIN.y + CARD_GAP * i * CARD_DIRECTION_FACTOR)
+    for i = 1, cardData.CARD_COUNT do
+        local size = cardData.CARD_SIZE
+        local pos = vector2.new(cardData.CARD_ORIGIN.x, cardData.CARD_ORIGIN.y + cardData.CARD_GAP * i * cardData.CARD_DIRECTION_FACTOR)
         local card = rect.new(pos, size)
-        card:setCornerRadius(CORNER_RADIUS)
-        card:setAnchor(CARD_ANCHOR)
+        card:setCornerRadius(cardData.CORNER_RADIUS)
+        card:setAnchor(cardData.CARD_ANCHOR)
         card:setColour({love.math.random(), love.math.random(), love.math.random()})
+        card:setOutline(true, 2, {255, 255, 255})
 
         local cardSpring = spring.new()
-        cardSpring:setEndPos(CARD_ORIGIN)
+        cardSpring:setEndPos(cardData.CARD_ORIGIN)
         cardSpring:setTargetPos(pos)
 
         table.insert(deck, { card, cardSpring, pos, i })
@@ -44,7 +34,7 @@ function game.init()
 end
 
 --- love.update()
-function game.update(dt)
+function stack.update(dt)
     local mousePos = vector2.new(love.mouse.getPosition())
     local scaledMousePos = vector2.new(utils.getMouseScalePos())
     for i, deckEntry in ipairs(deck) do
@@ -57,9 +47,9 @@ function game.update(dt)
         --- @type springClass
         local cardSpring = deckEntry[2]
 
-        if ((card:isInside(mousePos) and love.mouse.isDown(1)) or ((selectedCard == card) and love.mouse.isDown(1))) then
+        if ((card:isInside(mousePos) and love.mouse.isDown(1)) or ((cardData.selectedCard == card) and love.mouse.isDown(1))) then
 
-            selectedCard = card
+            cardData.selectedCard = card
 
             local oldTPos = i
             local newTPos = 1
@@ -75,7 +65,7 @@ function game.update(dt)
             return
         end
 
-        selectedCard = nil
+        cardData.selectedCard = nil
         cardSpring:setForce(25)
         cardSpring:setDamping(0.8)
         cardSpring:setEndPos(card:getPos())
@@ -87,8 +77,8 @@ function game.update(dt)
                 return a[4] < b[4]
             end)
 
-            if not ((card:getPos() - CARD_ORIGIN).Magnitude > 0.001) then
-                card:setPos(CARD_ORIGIN)
+            if not ((card:getPos() - cardData.CARD_ORIGIN).Magnitude > 0.001) then
+                card:setPos(cardData.CARD_ORIGIN)
             end
 
             local newPos = cardSpring:update(dt)
@@ -101,7 +91,7 @@ function game.update(dt)
 end
 
 --- love.draw()
-function game.draw()
+function stack.draw()
     for i = #deck, 1, -1 do
         local deckEntry = deck[i]
         deckEntry[1]:draw()
@@ -109,8 +99,8 @@ function game.draw()
 end
 
 --- love.exit()
-function game.exit()
+function stack.exit()
 
 end
 
-return game
+return stack
