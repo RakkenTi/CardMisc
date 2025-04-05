@@ -45,7 +45,6 @@ function spring:update(dt)
     local displacement = self.endPos - self.targetPos
     local acceleration = (displacement * -self.force) * dt
     self.velocity = (self.velocity + acceleration) * self.damping
-    print(self.velocity.Magnitude)
     self:setEndPos(self.endPos + self.velocity)
     return self.endPos
 end
